@@ -1,0 +1,6 @@
+export { default as TableAll } from "./TableAll"
+export { default as ClientTable } from "./TableClient"
+export { default as TablePolicies } from "./TablePolicies"
+export { default as TableProspect } from "./TableProspect"
+export { default as TableLost } from "./TableLost"
+export { default as Search } from "./Search/Search"
