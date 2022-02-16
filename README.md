@@ -2,7 +2,7 @@ This project was bootstrapped with [React](https://github.com/facebook/create-re
 
 # Health and Life Insurance Policy CRM
 
-![starter](https://github.com/rolandoyera/public-crm/blob/main/public/static/home/hero_dark-2.png)
+![starter](https://github.com/rolandoyera/crm-public/blob/main/public/static/home/hero_dark-2.png)
 
 ## Initial Setup
 
