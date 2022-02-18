@@ -6,7 +6,7 @@ import {
     Chip,
     Typography,
 } from "@mui/material"
-import { useGetCustomersByDate } from "lib/useFirestore"
+import { useGetCustomersByDateLimited } from "lib/useFirestore"
 import {
     DataGrid,
     GridColDef,
@@ -32,8 +32,8 @@ const TableAll = () => {
     const handleAmountChange = (event) => {
         setAmount(event.target.value)
     }
-    const { customers, customersHasError } = useGetCustomersByDate()
-    console.log(customers)
+    const { customers, customersHasError } =
+        useGetCustomersByDateLimited(amount)
 
     const [pageSize, setPageSize] = useState(15)
     const { setCurrentTab } = useContext(TabsContext)
@@ -58,7 +58,7 @@ const TableAll = () => {
             align: "center",
             filterable: false,
             sortable: false,
-            width: 150,
+            minWidth: 130,
             renderCell: (params) => (
                 <>
                     <IconButton
@@ -94,7 +94,7 @@ const TableAll = () => {
             field: "unread",
             headerName: "New",
             headerAlign: "center",
-            flex: 0,
+            width: 80,
             align: "center",
             renderCell: (params: any) => {
                 switch (params.row.unread) {
@@ -123,7 +123,7 @@ const TableAll = () => {
             field: "isProspect",
             headerName: "Type",
             headerAlign: "center",
-            flex: 1,
+            width: 120,
             align: "center",
             renderCell: (params: any) => {
                 switch (params.row.isProspect) {
@@ -162,6 +162,7 @@ const TableAll = () => {
         {
             field: "lastContact",
             headerName: "Last Contact",
+            minWidth: 150,
             flex: 1,
             valueFormatter: (params) => {
                 if (params.value === undefined) {
@@ -187,6 +188,7 @@ const TableAll = () => {
         {
             field: "source",
             headerName: "Source",
+            minWidth: 150,
             flex: 1,
         },
         {
@@ -216,16 +218,19 @@ const TableAll = () => {
         {
             field: "holderEmail",
             headerName: "Email",
+            minWidth: 200,
             flex: 1,
         },
         {
             field: "holderPhoneNumber",
             headerName: "Phone No",
+            minWidth: 150,
             flex: 1,
         },
         {
             field: "createdAt",
             headerName: "Created",
+            minWidth: 150,
             flex: 1,
             valueFormatter: (params) => {
                 const valueFormatted = formatDistance(
@@ -267,9 +272,24 @@ const TableAll = () => {
                 >
                     <GridToolbarContainer style={{ padding: "1rem" }}>
                         <GridToolbarFilterButton sx={{ mr: 2 }} />
-                        <GridToolbarDensitySelector sx={{ mr: 2 }} />
+                        <GridToolbarDensitySelector
+                            sx={{
+                                mr: 2,
+                                display: {
+                                    xs: "none",
+                                    sm: "flex",
+                                },
+                            }}
+                        />
                         <GridToolbarColumnsButton sx={{ mr: 2 }} />
-                        <GridToolbarExport />
+                        <GridToolbarExport
+                            sx={{
+                                display: {
+                                    xs: "none",
+                                    sm: "flex",
+                                },
+                            }}
+                        />
                     </GridToolbarContainer>
                     <Box
                         sx={{

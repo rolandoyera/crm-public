@@ -12,8 +12,7 @@ import {
 } from "@mui/material"
 import {
     AnalyticsGeneralOverview,
-    AnalyticsMostVisitedPages,
-    AnalyticsSocialMediaSources,
+    AnalyticsProspectSources,
     AnalyticsClients,
 } from "../../components/dashboard/analytics"
 import ChevronDownIcon from "../../icons/ChevronDown"
@@ -87,12 +86,8 @@ const Analytics: FC = () => {
                         <Grid item xs={12}>
                             <AnalyticsClients sx={{ height: "100%" }} />
                         </Grid>
-
-                        <Grid item xl={9} md={8} xs={12}>
-                            <AnalyticsMostVisitedPages />
-                        </Grid>
                         <Grid item xl={3} md={4} xs={12}>
-                            <AnalyticsSocialMediaSources />
+                            <AnalyticsProspectSources />
                         </Grid>
                     </Grid>
                 </Container>

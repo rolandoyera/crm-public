@@ -116,10 +116,6 @@ const RecentPolicies: FC = (props) => {
                                             <Box
                                                 sx={{
                                                     mb: 0.4,
-                                                    ml: {
-                                                        xs: 3,
-                                                        sm: "unset",
-                                                    },
                                                 }}
                                             >
                                                 <Link
@@ -131,28 +127,7 @@ const RecentPolicies: FC = (props) => {
                                                     {policy.holderFirstName +
                                                         " " +
                                                         policy.holderLastName}
-                                                </Link>{" "}
-                                                {policy.isVerified === true ? (
-                                                    <VerifiedIcon
-                                                        sx={{
-                                                            ml: 1,
-                                                            mr: 0.1,
-                                                            fontSize: "14px",
-                                                        }}
-                                                        fontSize="small"
-                                                        color={"success"}
-                                                    />
-                                                ) : (
-                                                    <VerifiedIcon
-                                                        sx={{
-                                                            ml: 1,
-                                                            mr: 0.1,
-                                                            fontSize: "14px",
-                                                        }}
-                                                        fontSize="small"
-                                                        color={"error"}
-                                                    />
-                                                )}
+                                                </Link>
                                             </Box>
                                             <Box>
                                                 <Typography
@@ -166,7 +141,7 @@ const RecentPolicies: FC = (props) => {
                                                     variant="caption"
                                                 >
                                                     {policy.policyType}
-                                                    {":"}
+                                                    {": "}
                                                 </Typography>
                                                 <Typography
                                                     color="textPrimary"
@@ -174,6 +149,25 @@ const RecentPolicies: FC = (props) => {
                                                 >
                                                     {policy.policyCarrier}
                                                 </Typography>
+                                                {policy.isVerified === true ? (
+                                                    <VerifiedIcon
+                                                        sx={{
+                                                            ml: 0.5,
+                                                            fontSize: "14px",
+                                                        }}
+                                                        fontSize="small"
+                                                        color={"success"}
+                                                    />
+                                                ) : (
+                                                    <VerifiedIcon
+                                                        sx={{
+                                                            ml: 0.5,
+                                                            fontSize: "14px",
+                                                        }}
+                                                        fontSize="small"
+                                                        color={"error"}
+                                                    />
+                                                )}
                                             </Box>
                                         </Box>
                                     </ListItemText>

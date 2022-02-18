@@ -1,4 +1,13 @@
-import { Box, Paper, Divider, Avatar, IconButton, Chip } from "@mui/material"
+import {
+    Box,
+    Paper,
+    Divider,
+    Avatar,
+    IconButton,
+    Chip,
+    Typography,
+    TextField,
+} from "@mui/material"
 import { useGetActiveProspects } from "lib/useFirestore"
 import {
     DataGrid,
@@ -20,21 +29,12 @@ import kFormatter from "lib/kFormatter"
 import { fireDb } from "lib/firebase"
 import { TabsContext } from "contexts/TabsContext"
 
-function CustomToolbar() {
-    return (
-        <>
-            <GridToolbarContainer style={{ padding: "1rem" }}>
-                <GridToolbarFilterButton sx={{ mr: 2 }} />
-                <GridToolbarDensitySelector sx={{ mr: 2 }} />
-                <GridToolbarColumnsButton sx={{ mr: 2 }} />
-                <GridToolbarExport />
-            </GridToolbarContainer>
-            <Divider />
-        </>
-    )
-}
-
 const TableProspect = () => {
+    const [amount, setAmount] = useState(5)
+
+    const handleAmountChange = (event) => {
+        setAmount(event.target.value)
+    }
     const { prospects } = useGetActiveProspects()
     const [pageSize, setPageSize] = useState(15)
     const { setCurrentTab } = useContext(TabsContext)
@@ -274,6 +274,72 @@ const TableProspect = () => {
             minWidth: 140,
         },
     ]
+
+    const CustomToolbar = () => {
+        return (
+            <>
+                <Box
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
+                >
+                    <GridToolbarContainer style={{ padding: "1rem" }}>
+                        <GridToolbarFilterButton sx={{ mr: 2 }} />
+                        <GridToolbarDensitySelector
+                            sx={{
+                                mr: 2,
+                                display: {
+                                    xs: "none",
+                                    sm: "flex",
+                                },
+                            }}
+                        />
+                        <GridToolbarColumnsButton sx={{ mr: 2 }} />
+                        <GridToolbarExport
+                            sx={{
+                                display: {
+                                    xs: "none",
+                                    sm: "flex",
+                                },
+                            }}
+                        />
+                    </GridToolbarContainer>
+                    <Box
+                        sx={{
+                            minWidth: 120,
+                            ml: 1,
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                    >
+                        <Typography
+                            fontSize={".8125rem"}
+                            fontWeight={600}
+                            mr={1.5}
+                        >
+                            Limit
+                        </Typography>
+                        <TextField
+                            onChange={handleAmountChange}
+                            select
+                            SelectProps={{ native: true }}
+                            value={amount}
+                            variant="standard"
+                            size="small"
+                        >
+                            <option value={5}>5</option>
+                            <option value={10}>10</option>
+                            <option value={25}>25</option>
+                            <option value={50}>50</option>
+                            <option value={250}>250</option>
+                            <option value={2000}>All</option>
+                        </TextField>
+                    </Box>
+                </Box>
+                <Divider />
+            </>
+        )
+    }
 
     return (
         <Box sx={{ width: "100%" }}>

@@ -4,42 +4,41 @@ import Dialog from "@mui/material/Dialog"
 import DialogActions from "@mui/material/DialogActions"
 import DialogContent from "@mui/material/DialogContent"
 import DialogTitle from "@mui/material/DialogTitle"
-import Input from "@mui/material/Input"
-import { firebaseAuth } from "lib/firebase"
+import { firebaseAuth, storage } from "lib/firebase"
+import { Input } from "@mui/material"
 import { useState } from "react"
-import "firebase/storage"
-import firebase from "firebase/app"
 
 export default function ProfileImageModal(props) {
     const { open, onClose } = props
+    const [file, setFile] = useState(null)
+    const [url, setURL] = useState("")
     const [loading, setLoading] = useState(false)
-    const [photo, setPhoto] = useState(null)
-    const [photoURL, setPhotoURL] = useState()
     const user = firebaseAuth.currentUser
-    const storageRef = firebase.storage().ref("profilePictures/profile.jpg")
 
     function handleChange(e) {
         if (e.target.files[0]) {
-            setPhoto(e.target.files[0])
+            setFile(e.target.files[0])
         }
     }
-    async function handleSubmit() {
+    const handleUpload = () => {
         setLoading(true)
-        await storageRef
-            .put(photo)
-            .then(async () => await storageRef.getDownloadURL())
-            .then(async (url) => await setPhotoURL(url))
-            .then(
-                async () =>
-                    await user.updateProfile({
-                        photoURL: photoURL,
-                    })
-            )
-        setTimeout(() => window.location.reload(), 500)
+        const ref = storage.ref(`/images/${file.name}`)
+        const uploadTask = ref.put(file)
+        uploadTask.on("state_changed", console.log, console.error, () => {
+            ref.getDownloadURL().then((url) => {
+                setFile(null)
+                setURL(url)
+                user.updateProfile({
+                    photoURL: url,
+                })
+            })
+        })
+
         toast.success("Image Saved")
+        setTimeout(() => window.location.reload(), 2000)
         setLoading(false)
     }
-    console.log(photoURL)
+    console.log("url", url)
 
     return (
         <Dialog open={open} onClose={onClose} maxWidth="lg">
@@ -60,7 +59,7 @@ export default function ProfileImageModal(props) {
 
                 <DialogActions>
                     <Button onClick={() => onClose()}>Cancel</Button>
-                    <Button onClick={handleSubmit}>Save Image</Button>
+                    <Button onClick={handleUpload}>Save Image</Button>
                 </DialogActions>
             </>
         </Dialog>

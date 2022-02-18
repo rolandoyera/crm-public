@@ -59,7 +59,7 @@ const Login: FC = () => {
                         </Typography>
                         <img alt="Auth platform" src={platformIcons.Firebase} />
                     </Box>
-                    <Card elevation={16} sx={{ p: 4 }}>
+                    <Card elevation={16}>
                         <CardContent
                             sx={{
                                 display: "flex",
