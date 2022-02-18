@@ -27,7 +27,7 @@ import {
     serverTimestamp,
 } from "lib/firebase"
 import { useState } from "react"
-import { ApplicationModal } from "components/dashboard/ApplicationModal"
+import { ApplicationModal } from "components/dashboard/modals"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import CloudUploadIcon from "@mui/icons-material/CloudUpload"
 import VerifiedIcon from "@mui/icons-material/Verified"

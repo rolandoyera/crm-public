@@ -9,7 +9,7 @@ import { fireDb, serverTimestamp } from "lib/firebase"
 import { firebaseAuth } from "lib/firebase"
 import SaveIcon from "icons/Save"
 import DoDisturbIcon from "@mui/icons-material/DoDisturb"
-import { formatPhoneNumber } from "../customer/helpers"
+import { formatPhoneNumber } from "../../customer/helpers"
 import { Formik } from "formik"
 import * as Yup from "yup"
 

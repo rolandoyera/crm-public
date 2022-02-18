@@ -1,2 +1,6 @@
-export { default as HealthNoteModal } from "./health-note-modal"
+export { default as HealthNoteModal } from "./HealthNoteModal"
 export { default as ProfileImageModal } from "./ProfileImageModal"
+export { default as TouchModal } from "./TouchModal/TouchModal"
+export { default as EmailModal } from "./EmailModal/EmailModal"
+export { default as CallModal } from "./CallModal/CallModal"
+export { default as ApplicationModal } from "./ApplicationModal/ApplicationModal"

@@ -1,5 +1,4 @@
 import type { FC, ReactElement, ReactNode } from "react"
-import PropTypes from "prop-types"
 import { Button } from "@mui/material"
 import type { ButtonProps } from "@mui/material"
 
@@ -28,11 +27,6 @@ const TouchModalAction: FC<TouchModalActionProps> = (props) => {
             {children}
         </Button>
     )
-}
-
-TouchModalAction.propTypes = {
-    icon: PropTypes.element,
-    children: PropTypes.node,
 }
 
 export default TouchModalAction
