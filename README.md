@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 I built this CRM for a health and life insurance broker to track their clients along with their policies. You can print or download completed applications, manage tasks and "follow" clients that are marked as important to keep them front and center. Separate tables are available to sort and filter customers and policies for insight or to download in csv format to use for marketing or other purposes. Charts are avaiable for customer insight.
 
-This app uses the following technologies:
+This app uses the following technologies and frameworks:
 
 1. Firebase for data and authentication
 2. Search powered by Algolia
