@@ -21,7 +21,6 @@ import {
 import { Suspense, lazy } from "react"
 import { Navigate } from "react-router-dom"
 import AuthGuard from "./components/AuthGuard"
-import BlogLayout from "./components/blog/BlogLayout"
 import DashboardLayout from "./components/dashboard/DashboardLayout"
 import GuestGuard from "./components/GuestGuard"
 import LoadingScreen from "./components/LoadingScreen"
@@ -67,22 +66,11 @@ const VerifyCode = Loadable(
     lazy(() => import("./pages/authentication/VerifyCode"))
 )
 
-// Blog pages
-
-const BlogPostCreate = Loadable(
-    lazy(() => import("./pages/blog/BlogPostCreate"))
-)
-const BlogPostDetails = Loadable(
-    lazy(() => import("./pages/blog/BlogPostDetails"))
-)
-const BlogPostList = Loadable(lazy(() => import("./pages/blog/BlogPostList")))
-
 // Dashboard pages
 
 const Account = Loadable(lazy(() => import("./pages/dashboard/Account")))
 const Analytics = Loadable(lazy(() => import("./pages/dashboard/Analytics")))
 const Calendar = Loadable(lazy(() => import("./pages/dashboard/Calendar")))
-const Chat = Loadable(lazy(() => import("./pages/dashboard/Chat")))
 const Finance = Loadable(lazy(() => import("./pages/dashboard/Finance")))
 
 const Kanban = Loadable(lazy(() => import("./pages/dashboard/Kanban")))
@@ -138,24 +126,6 @@ const routes = [
         ],
     },
     {
-        path: "blog",
-        element: <BlogLayout />,
-        children: [
-            {
-                path: "/",
-                element: <BlogPostList />,
-            },
-            {
-                path: "new",
-                element: <BlogPostCreate />,
-            },
-            {
-                path: ":postId",
-                element: <BlogPostDetails />,
-            },
-        ],
-    },
-    {
         path: "contact",
         element: <Contact />,
     },
@@ -182,23 +152,6 @@ const routes = [
             {
                 path: "calendar",
                 element: <Calendar />,
-            },
-            {
-                path: "chat",
-                children: [
-                    {
-                        path: "/",
-                        element: <Chat />,
-                    },
-                    {
-                        path: "new",
-                        element: <Chat />,
-                    },
-                    {
-                        path: ":threadKey",
-                        element: <Chat />,
-                    },
-                ],
             },
             {
                 path: "customers",

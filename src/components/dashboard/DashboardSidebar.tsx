@@ -1,14 +1,12 @@
 import { useEffect } from "react"
 import type { FC } from "react"
 import { Link as RouterLink, useLocation } from "react-router-dom"
-import PropTypes from "prop-types"
 import { Avatar, Box, Divider, Drawer, Link, Typography } from "@mui/material"
 import type { Theme } from "@mui/material"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import CalendarIcon from "icons/Calendar"
 import ChartPieIcon from "icons/ChartPie"
 import ChartSquareBarIcon from "icons/ChartSquareBar"
-import ChatAltIcon from "icons/ChatAlt"
 import ClipboardListIcon from "icons/ClipboardList"
 import MailIcon from "icons/Mail"
 import ShoppingBagIcon from "icons/ShoppingBag"
@@ -105,12 +103,6 @@ const sections = [
                 path: "#",
                 // path: "/dashboard/mail",
                 icon: <MailIcon fontSize="small" />,
-            },
-            {
-                title: "Chat",
-                path: "#",
-                // path: "/dashboard/chat",
-                icon: <ChatAltIcon fontSize="small" />,
             },
             {
                 title: "Calendar",
@@ -257,11 +249,6 @@ const DashboardSidebar: FC<DashboardSidebarProps> = (props) => {
             {content}
         </Drawer>
     )
-}
-
-DashboardSidebar.propTypes = {
-    onMobileClose: PropTypes.func,
-    openMobile: PropTypes.bool,
 }
 
 export default DashboardSidebar

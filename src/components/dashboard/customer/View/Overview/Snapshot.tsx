@@ -81,7 +81,10 @@ const Snapshot = ({
         }
     }
 
-    const dob = new Date(customer.holderDOB)
+    //Calculate Age
+    // REGEX to replace date dashes (-) to slashes (/) to work in Safari Browser
+
+    const dob = new Date(customer?.holderDOB?.replace(/-/g, "/"))
     const month_diff = Date.now() - dob.getTime()
     const age_dt = new Date(month_diff)
     const year = age_dt.getUTCFullYear()
