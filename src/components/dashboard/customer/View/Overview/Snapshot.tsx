@@ -632,7 +632,7 @@ const Snapshot = ({
                                     Age
                                 </Typography>
                                 <Typography color="textPrimary" variant="h4">
-                                    {age}
+                                    {age ? age : "-"}
                                 </Typography>
                             </Box>{" "}
                         </>
