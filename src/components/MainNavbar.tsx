@@ -42,7 +42,7 @@ const MainNavbar: FC<MainNavbarProps> = (props) => {
                 <RouterLink to="/">
                     <img
                         style={{ marginTop: "6px" }}
-                        src={`${Company.url}/static/royalty-shield.png`}
+                        src={`/static/royalty-shield.png`}
                         alt="Company Logo"
                         width={35}
                         height={35}
